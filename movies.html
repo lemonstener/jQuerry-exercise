@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies App</title>
+</head>
+
+<body>
+
+
+    <div id="div-form">
+        <h1>Add a movie!</h1>
+        <form action="">
+            <label for="title">Enter a movie title <br>
+                <input type="text" id="title" class="input" minlength="2">
+            </label><br>
+            <label for="score">Pick a score <br>
+                <input type="range" id="score" class="input" min="0" max="10" width="100%">
+            </label><br>
+            <input type="button" id="submit-movie" value="Submit">
+        </form>
+    </div>
+
+
+    <div id="container"></div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+    <script>
+        // Styling
+        $('body').css('background-color', '#5EFC8D');
+        $('#div-form')
+            .css({
+                'text-align': 'center',
+                'width': '90vw',
+                'height': '22vh',
+                'border-sizing': 'border-box',
+                'border-radius': '25px',
+                'margin': '0 auto',
+                'background-color': '#FFFD82'
+            });
+        $('.input')
+            .css({
+                'margin-top': '5px',
+                'width': '33%'
+            });
+        $('#container')
+            .css({
+                'width': '80vw',
+                'margin': '0 auto',
+                'display': 'flex',
+                'flex-direction': 'row',
+                'flex-wrap': 'wrap',
+            });
+        // Functionality
+        $('#submit-movie').on('click', function () {
+            const div = $('<div>').addClass('card');
+            const p1 = $('<p>').text($('#title').val()).appendTo(div);
+            const p2 = $('<p>').text($('#score').val() + '/10').appendTo(div);
+            $('#title').val('');
+            $('#score').val('');
+            const removeBTN = $('<button>').on('click', function () {
+                $(this).parent('div').remove();
+            });
+            removeBTN.text('Remove').appendTo(div);
+
+            $('#container').append(div);
+
+            // Styling the card elements
+            $('.card')
+                .css({
+                    'width': '150px',
+                    'height': '150px',
+                    'margin': '15px',
+                    'background-color': '#8377D1',
+                    'color': 'white',
+                    'text-align': 'center',
+                    'border': '1px solid teal',
+                    'border-radius': '10px',
+                })
+        })
+
+    </script>
+</body>
+
+</html>
